@@ -1,0 +1,182 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<!-- Copia congelada para el UAT Alpha de FARO (proyecto final UTN FRBA). NO es el sitio original. -->
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solicitar turno — Centro Médico Demo</title>
+
+<!--
+  PÁGINA DE EJEMPLO — no es un sitio real y no representa a ninguna institución.
+  Construida para el slide 12 de la Presentación Comercial de FARO.
+
+  Tiene, a propósito, un problema de cada tipo y UN SOLO elemento por cada tipo:
+    · link-name    el enlace del logo no tiene nombre accesible
+    · image-alt    la imagen de ese logo no tiene alt
+    · label        la etiqueta del DNI se ve, pero no esta asociada al campo
+    · select-name  idem con el select de especialidad
+    · button-name  el botón de enviar no tiene texto (es sólo un ícono)
+
+  El resto de los controles está BIEN etiquetado. El contraste entre unos y
+  otros es lo que hace audible el problema.
+
+  IMPORTANTE: ninguno de estos errores se nota mirando la pantalla. Un usuario
+  vidente con mouse completa el formulario sin problemas. Esa es justamente la
+  tesis del slide 4: es un error que no se le manifiesta al que lo comete.
+-->
+
+<style>
+  :root{
+    --tinta:#1f2d3d; --tinta-suave:#5a6b7d; --linea:#dfe6ec;
+    --primario:#0d6e6e; --primario-osc:#0a5757; --fondo:#f6f9fa;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--fondo); color:var(--tinta);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:16px; line-height:1.5;
+  }
+  .barra{
+    background:#fff; border-bottom:1px solid var(--linea);
+    display:flex; align-items:center; gap:28px;
+    padding:14px 32px;
+  }
+  .logo img{display:block; height:38px; width:auto}
+  nav{display:flex; gap:22px; margin-left:auto}
+  nav a{color:var(--tinta-suave); text-decoration:none; font-size:15px}
+  nav a:hover{color:var(--primario)}
+
+  main{max-width:680px; margin:0 auto; padding:36px 24px 64px}
+  h1{font-size:30px; letter-spacing:-.01em; margin:0 0 6px}
+  .bajada{color:var(--tinta-suave); margin:0 0 26px}
+
+  .foto{width:100%; height:150px; object-fit:cover; border-radius:10px; margin-bottom:28px; display:block}
+
+  .tarjeta{background:#fff; border:1px solid var(--linea); border-radius:12px; padding:26px 28px}
+  .campo{margin-bottom:20px}
+  label{display:block; font-weight:600; font-size:14px; margin-bottom:6px}
+  input,select{
+    width:100%; padding:11px 12px; font:inherit; color:var(--tinta);
+    border:1px solid #c6d2dc; border-radius:8px; background:#fff;
+  }
+  input:focus,select:focus,button:focus,a:focus{
+    outline:3px solid var(--primario); outline-offset:2px;
+  }
+  .ayuda{font-size:13px; color:var(--tinta-suave); margin:6px 0 0}
+
+  /* Hueco 2 (1.4.3): gris deliberadamente insuficiente sobre el blanco de la
+     tarjeta. #a9b6c0 sobre #fff da 2,07:1 — la mitad del 4,5:1 que pide el
+     criterio para texto normal. Es el UNICO texto de la pagina con este
+     problema, para no romper la regla de "un elemento por regla". */
+  .aviso{color:#a9b6c0; font-size:14px; margin:0 0 22px}
+
+  .acciones{display:flex; align-items:center; gap:14px; margin-top:26px}
+  .enviar{
+    background:var(--primario); border:0; border-radius:8px; cursor:pointer;
+    padding:12px 20px; display:inline-flex; align-items:center; justify-content:center;
+  }
+  .enviar:hover{background:var(--primario-osc)}
+  .enviar svg{display:block; width:20px; height:20px; fill:#fff}
+  .nota{font-size:13px; color:var(--tinta-suave); margin:0}
+
+  footer{border-top:1px solid var(--linea); margin-top:44px; padding:20px 32px; color:var(--tinta-suave); font-size:13px}
+</style>
+<meta name="faro-remediado" content="snapshot remediado por FARO: un parche por violacion, sobre nodes[0]"></head>
+<body>
+
+<header class="barra">
+  <!-- ⚠️ link-name + image-alt: el enlace no tiene texto y la imagen no tiene alt,
+       así que el enlace se queda sin ningún nombre accesible. -->
+  <a class="logo" href="/" aria-label="Inicio">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCAyMDAgNDgiPjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgeD0iNCIgeT0iNCIgcng9IjEwIiBmaWxsPSIjMGQ2ZTZlIi8+PHBhdGggZD0iTTE4IDE2aDEydjZoNnYxMmgtNnY2aC0xMnYtNmgtNnYtMTJoNnoiIGZpbGw9IiNmZmYiLz48dGV4dCB4PSI1NCIgeT0iMjIiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFmMmQzZCI+Q2VudHJvIE3DqWRpY288L3RleHQ+PHRleHQgeD0iNTQiIHk9IjM4IiBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGZpbGw9IiM1YTZiN2QiPkRlbW88L3RleHQ+PC9zdmc+" alt="Centro Médioc Demo">
+  </a>
+
+  <nav>
+    <a href="/turnos">Turnos</a>
+    <a href="/especialidades">Especialidades</a>
+    <a href="/contacto">Contacto</a>
+  </nav>
+</header>
+
+<main>
+  <h1>Solicitar turno</h1>
+  <p class="bajada">Completá tus datos y elegí la especialidad. Te confirmamos por correo.</p>
+
+  <!-- Esta imagen SÍ tiene alt: es el control del experimento. -->
+  <img class="foto" alt="Ilustración de la sala de espera: tres sillas alineadas frente al mostrador de recepción" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20200%22%20role%3D%22img%22%3E%3Crect%20width%3D%22800%22%20height%3D%22200%22%20fill%3D%22%23e9f1f1%22%2F%3E%3Crect%20y%3D%22152%22%20width%3D%22800%22%20height%3D%2248%22%20fill%3D%22%23d7e6e6%22%2F%3E%3Crect%20x%3D%2262%22%20y%3D%2226%22%20width%3D%22168%22%20height%3D%2276%22%20rx%3D%227%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.75%22%2F%3E%3Cline%20x1%3D%22146%22%20y1%3D%2226%22%20x2%3D%22146%22%20y2%3D%22102%22%20stroke%3D%22%23cfe0e0%22%20stroke-width%3D%223%22%2F%3E%3Ccircle%20cx%3D%22392%22%20cy%3D%2252%22%20r%3D%2217%22%20fill%3D%22%23ffffff%22%2F%3E%3Ccircle%20cx%3D%22392%22%20cy%3D%2252%22%20r%3D%2215%22%20fill%3D%22none%22%20stroke%3D%22%23b7cccc%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M392%2043v10l6%204%22%20fill%3D%22none%22%20stroke%3D%22%237e9f9f%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%2F%3E%3Cg%20fill%3D%22%238fb5b5%22%3E%3Crect%20x%3D%2270%22%20y%3D%2296%22%20width%3D%2248%22%20height%3D%2234%22%20rx%3D%227%22%2F%3E%3Crect%20x%3D%2266%22%20y%3D%22128%22%20width%3D%2256%22%20height%3D%2210%22%20rx%3D%224%22%2F%3E%3Crect%20x%3D%2272%22%20y%3D%22138%22%20width%3D%226%22%20height%3D%2214%22%2F%3E%3Crect%20x%3D%22110%22%20y%3D%22138%22%20width%3D%226%22%20height%3D%2214%22%2F%3E%3Crect%20x%3D%22146%22%20y%3D%2296%22%20width%3D%2248%22%20height%3D%2234%22%20rx%3D%227%22%2F%3E%3Crect%20x%3D%22142%22%20y%3D%22128%22%20width%3D%2256%22%20height%3D%2210%22%20rx%3D%224%22%2F%3E%3Crect%20x%3D%22148%22%20y%3D%22138%22%20width%3D%226%22%20height%3D%2214%22%2F%3E%3Crect%20x%3D%22186%22%20y%3D%22138%22%20width%3D%226%22%20height%3D%2214%22%2F%3E%3Crect%20x%3D%22222%22%20y%3D%2296%22%20width%3D%2248%22%20height%3D%2234%22%20rx%3D%227%22%2F%3E%3Crect%20x%3D%22218%22%20y%3D%22128%22%20width%3D%2256%22%20height%3D%2210%22%20rx%3D%224%22%2F%3E%3Crect%20x%3D%22224%22%20y%3D%22138%22%20width%3D%226%22%20height%3D%2214%22%2F%3E%3Crect%20x%3D%22262%22%20y%3D%22138%22%20width%3D%226%22%20height%3D%2214%22%2F%3E%3C%2Fg%3E%3Crect%20x%3D%22470%22%20y%3D%22126%22%20width%3D%2230%22%20height%3D%2226%22%20rx%3D%224%22%20fill%3D%22%23a9836b%22%2F%3E%3Cpath%20d%3D%22M485%20126c0-16-9-24-18-27%203%2012%208%2020%2018%2027zM485%20126c0-16%209-24%2018-27-3%2012-8%2020-18%2027z%22%20fill%3D%22%2379a87c%22%2F%3E%3Crect%20x%3D%22556%22%20y%3D%22104%22%20width%3D%22188%22%20height%3D%2248%22%20fill%3D%22%230d6e6e%22%20opacity%3D%22.78%22%2F%3E%3Crect%20x%3D%22546%22%20y%3D%2294%22%20width%3D%22208%22%20height%3D%2212%22%20rx%3D%224%22%20fill%3D%22%230a5757%22%2F%3E%3Crect%20x%3D%22596%22%20y%3D%22118%22%20width%3D%22108%22%20height%3D%227%22%20rx%3D%223%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.55%22%2F%3E%3Crect%20x%3D%22596%22%20y%3D%22132%22%20width%3D%2272%22%20height%3D%227%22%20rx%3D%223%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.35%22%2F%3E%3C%2Fsvg%3E">
+
+  <form class="tarjeta" action="/turnos/confirmar" method="post">
+
+    <!-- ⚠️ color-contrast (1.4.3): el aviso trae un dato que hay que LEER
+         —cuanto antes hay que llegar y que documentacion llevar— pero esta
+         escrito en un gris de 2,07:1 sobre blanco. Mirando la pantalla se ve
+         "gris clarito" y se saltea; para alguien con baja vision es ilegible,
+         y el dato no esta en ningun otro lado de la pagina.
+
+         Es el hueco 2 de 06_banco-de-pruebas.md: hasta ahora los 4 parches de
+         contraste de esta pagina eran todos faro-non-text-contrast (1.4.11,
+         bordes de campos). No habia ni uno de 1.4.3, que es el criterio que
+         mas aparece en la web real (79,1%% segun WebAIM) y el que valida el
+         algoritmo deterministico de contraste. -->
+    <p class="aviso" style="color: #647989">Presentate 15 minutos antes con el DNI y el carnet de la obra social.</p>
+
+    <!-- Bien: label asociado por for/id. -->
+    <div class="campo">
+      <label for="nombre">Nombre y apellido</label>
+      <input id="nombre" name="nombre" type="text" autocomplete="name" style="border-color: #7D98AF">
+    </div>
+
+    <!-- ⚠️ label: la etiqueta ESTÁ y se ve igual que las demás, pero no está
+         asociada al campo: le falta el for, y el input tampoco está adentro
+         del <label>. En pantalla no se nota nada. Para un lector de pantalla
+         el campo no tiene nombre: anuncia "edición" y nada más. -->
+    <div class="campo">
+      <label>DNI</label>
+      <input id="dni" name="dni" type="text" inputmode="numeric" style="border-color: #7D98AF" aria-label="Dni">
+      <p class="ayuda">Sin puntos ni espacios.</p>
+    </div>
+
+    <!-- ⚠️ select-name: mismo caso que el DNI. La etiqueta se ve, pero no
+         está asociada al select. -->
+    <div class="campo">
+      <label>Especialidad</label>
+      <select id="especialidad" name="especialidad" style="border-color: #7D98AF" for="especialidad" aria-label="Seleccionar especialidad">
+        <option value="">Elegí una opción</option>
+        <option value="clinica">Clínica médica</option>
+        <option value="cardio">Cardiología</option>
+        <option value="oftalmo">Oftalmología</option>
+        <option value="trauma">Traumatología</option>
+      </select>
+    </div>
+
+    <!-- Bien: este select sí está etiquetado. El contraste con el anterior es el punto. -->
+    <div class="campo">
+      <label for="obra-social">Obra social</label>
+      <select id="obra-social" name="obra_social" style="border-color: #7D98AF">
+        <option value="">Elegí una opción</option>
+        <option value="particular">Particular</option>
+        <option value="prepaga">Prepaga</option>
+        <option value="sindical">Sindical</option>
+      </select>
+    </div>
+
+    <div class="acciones">
+      <!-- ⚠️ button-name: el botón no tiene texto, sólo un ícono SVG decorativo. -->
+      <button class="enviar" type="submit" aria-label="Enviar">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"></path>
+        </svg>
+      </button>
+      <p class="nota">Te llega la confirmación por correo dentro de las 24 horas.</p>
+    </div>
+
+  </form>
+</main>
+
+<footer>
+  Centro Médico Demo — página de ejemplo construida para una demostración. No es un sitio real.
+</footer>
+
+
+
+</body></html>
