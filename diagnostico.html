@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Diagnóstico H-06</title>
+<!--
+  Página de diagnóstico para H-06 (proyecto FARO, UTN FRBA).
+  NO es parte del banco de pruebas ni del A/B: es una herramienta de laboratorio.
+
+  Cada control lleva UNA sola forma de etiquetado, y cada etiqueta es una
+  palabra distinta e inventada, para que no haya duda de cuál habló.
+-->
+<style>
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+       margin:0; padding:20px 16px 60px; color:#1f2d3d; line-height:1.5}
+  h1{font-size:22px; margin:0 0 4px}
+  .sub{color:#5a6b7d; margin:0 0 24px; font-size:14px}
+  .caso{border:1px solid #dfe6ec; border-radius:10px; padding:14px 16px; margin-bottom:14px}
+  .n{font-weight:700; font-size:13px; color:#0d6e6e; margin:0 0 8px}
+  input,select{width:100%; padding:10px; font:inherit; border:1px solid #c6d2dc; border-radius:8px}
+  label{display:block; font-weight:600; font-size:14px; margin-bottom:6px}
+</style>
+</head>
+<body>
+
+<h1>Diagnóstico H-06</h1>
+<p class="sub">Siete controles. Cada uno se etiqueta de una forma distinta.
+Deslizá por cada uno y anotá qué dice TalkBack.</p>
+
+<!-- 1 — aria-label solo, sin NADA de texto alrededor -->
+<div class="caso">
+  <p class="n">Caso 1</p>
+  <input type="text" aria-label="Alfa">
+</div>
+
+<!-- 2 — label asociado con for, sin aria-label -->
+<div class="caso">
+  <p class="n">Caso 2</p>
+  <label for="c2">Bravo</label>
+  <input type="text" id="c2">
+</div>
+
+<!-- 3 — EL CASO DE LA DEMO: label visible SIN for, mas aria-label distinto -->
+<div class="caso">
+  <p class="n">Caso 3</p>
+  <label>Charlie</label>
+  <input type="text" aria-label="Delta">
+</div>
+
+<!-- 4 — placeholder solo -->
+<div class="caso">
+  <p class="n">Caso 4</p>
+  <input type="text" placeholder="Eco">
+</div>
+
+<!-- 5 — aria-labelledby -->
+<div class="caso">
+  <p class="n">Caso 5</p>
+  <span id="c5">Foxtrot</span>
+  <input type="text" aria-labelledby="c5">
+</div>
+
+<!-- 6 — select con aria-label solo -->
+<div class="caso">
+  <p class="n">Caso 6</p>
+  <select aria-label="Golf">
+    <option value="">Elegí una opción</option>
+    <option>Uno</option>
+  </select>
+</div>
+
+<!-- 7 — EL CASO DE LA DEMO EN SELECT: label visible sin for, mas aria-label -->
+<div class="caso">
+  <p class="n">Caso 7</p>
+  <label>Hotel</label>
+  <select aria-label="India">
+    <option value="">Elegí una opción</option>
+    <option>Uno</option>
+  </select>
+</div>
+
+</body>
+</html>
