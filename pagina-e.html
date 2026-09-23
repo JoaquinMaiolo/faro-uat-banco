@@ -5,7 +5,9 @@
 <!-- Copia congelada para el UAT Alpha de FARO (proyecto final UTN FRBA). NO es el sitio original. -->
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- HUECO 5 (1.4.4): zoom bloqueado a proposito. Es lo que P3 describio el 21/09:
+     "si alguna pagina me daba problemas para zoomear le hacia una captura". -->
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1">
 <title>Solicitar turno — Centro Médico Demo</title>
 
 <!--
@@ -88,6 +90,11 @@
   .enviar svg{display:block; width:20px; height:20px; fill:#fff}
   .nota{font-size:13px; color:var(--tinta-suave); margin:0}
 
+  /* ⚠️ 2.4.7 foco visible: este campo se saltea el outline general. */
+  #dni:focus{outline:none}
+  /* ⚠️ 1.4.1 uso del color: enlace distinguido SOLO por color, sin subrayado. */
+  .enlace-color{color:var(--primario); text-decoration:none}
+
   footer{border-top:1px solid var(--linea); margin-top:44px; padding:20px 32px; color:var(--tinta-suave); font-size:13px}
 
   /* --- F-8, bloque 1: estudios con enlaces indistinguibles --- */
@@ -120,7 +127,7 @@
 
 <main>
   <h1>Solicitar turno</h1>
-  <p class="bajada">Completá tus datos y elegí la especialidad. Te confirmamos por correo.</p>
+  <p class="bajada">Completá tus datos y elegí la especialidad. Te confirmamos por correo. Si preferís, podés <a class="enlace-color" href="/turnos/telefono">pedirlo por teléfono</a>.</p>
 
   <!-- Esta imagen SÍ tiene alt: es el control del experimento. -->
   <img class="foto"

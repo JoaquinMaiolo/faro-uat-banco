@@ -3,7 +3,9 @@
 <!-- Copia congelada para el UAT Alpha de FARO (proyecto final UTN FRBA). NO es el sitio original. -->
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- HUECO 5 (1.4.4): zoom bloqueado a proposito. Es lo que P3 describio el 21/09:
+     "si alguna pagina me daba problemas para zoomear le hacia una captura". -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Solicitar turno — Centro Médico Demo</title>
 
 <!--
@@ -86,6 +88,11 @@
   .enviar svg{display:block; width:20px; height:20px; fill:#fff}
   .nota{font-size:13px; color:var(--tinta-suave); margin:0}
 
+  /* ⚠️ 2.4.7 foco visible: este campo se saltea el outline general. */
+  #dni:focus{outline:none}
+  /* ⚠️ 1.4.1 uso del color: enlace distinguido SOLO por color, sin subrayado. */
+  .enlace-color{color:var(--primario); text-decoration:none}
+
   footer{border-top:1px solid var(--linea); margin-top:44px; padding:20px 32px; color:var(--tinta-suave); font-size:13px}
 
   /* --- F-8, bloque 1: estudios con enlaces indistinguibles --- */
@@ -106,7 +113,7 @@
   <!-- ⚠️ link-name + image-alt: el enlace no tiene texto y la imagen no tiene alt,
        así que el enlace se queda sin ningún nombre accesible. -->
   <a class="logo" href="/" aria-label="Inicio">
-    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCAyMDAgNDgiPjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgeD0iNCIgeT0iNCIgcng9IjEwIiBmaWxsPSIjMGQ2ZTZlIi8+PHBhdGggZD0iTTE4IDE2aDEydjZoNnYxMmgtNnY2aC0xMnYtNmgtNnYtMTJoNnoiIGZpbGw9IiNmZmYiLz48dGV4dCB4PSI1NCIgeT0iMjIiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFmMmQzZCI+Q2VudHJvIE3DqWRpY288L3RleHQ+PHRleHQgeD0iNTQiIHk9IjM4IiBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGZpbGw9IiM1YTZiN2QiPkRlbW88L3RleHQ+PC9zdmc+" alt="Centro Médico">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCAyMDAgNDgiPjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgeD0iNCIgeT0iNCIgcng9IjEwIiBmaWxsPSIjMGQ2ZTZlIi8+PHBhdGggZD0iTTE4IDE2aDEydjZoNnYxMmgtNnY2aC0xMnYtNmgtNnYtMTJoNnoiIGZpbGw9IiNmZmYiLz48dGV4dCB4PSI1NCIgeT0iMjIiIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzFmMmQzZCI+Q2VudHJvIE3DqWRpY288L3RleHQ+PHRleHQgeD0iNTQiIHk9IjM4IiBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTMiIGZpbGw9IiM1YTZiN2QiPkRlbW88L3RleHQ+PC9zdmc+" alt="Centro Médioco">
   </a>
 
   <nav>
@@ -118,7 +125,7 @@
 
 <main>
   <h1>Solicitar turno</h1>
-  <p class="bajada">Completá tus datos y elegí la especialidad. Te confirmamos por correo.</p>
+  <p class="bajada">Completá tus datos y elegí la especialidad. Te confirmamos por correo. Si preferís, podés <a class="enlace-color" href="/turnos/telefono" style="text-decoration:underline;">pedirlo por teléfono</a>.</p>
 
   <!-- Esta imagen SÍ tiene alt: es el control del experimento. -->
   <img class="foto" alt="Ilustración de la sala de espera: tres sillas alineadas frente al mostrador de recepción" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20200%22%20role%3D%22img%22%3E%3Crect%20width%3D%22800%22%20height%3D%22200%22%20fill%3D%22%23e9f1f1%22%2F%3E%3Crect%20y%3D%22152%22%20width%3D%22800%22%20height%3D%2248%22%20fill%3D%22%23d7e6e6%22%2F%3E%3Crect%20x%3D%2262%22%20y%3D%2226%22%20width%3D%22168%22%20height%3D%2276%22%20rx%3D%227%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.75%22%2F%3E%3Cline%20x1%3D%22146%22%20y1%3D%2226%22%20x2%3D%22146%22%20y2%3D%22102%22%20stroke%3D%22%23cfe0e0%22%20stroke-width%3D%223%22%2F%3E%3Ccircle%20cx%3D%22392%22%20cy%3D%2252%22%20r%3D%2217%22%20fill%3D%22%23ffffff%22%2F%3E%3Ccircle%20cx%3D%22392%22%20cy%3D%2252%22%20r%3D%2215%22%20fill%3D%22none%22%20stroke%3D%22%23b7cccc%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M392%2043v10l6%204%22%20fill%3D%22none%22%20stroke%3D%22%237e9f9f%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%2F%3E%3Cg%20fill%3D%22%238fb5b5%22%3E%3Crect%20x%3D%2270%22%20y%3D%2296%22%20width%3D%2248%22%20height%3D%2234%22%20rx%3D%227%22%2F%3E%3Crect%20x%3D%2266%22%20y%3D%22128%22%20width%3D%2256%22%20height%3D%2210%22%20rx%3D%224%22%2F%3E%3Crect%20x%3D%2272%22%20y%3D%22138%22%20width%3D%226%22%20height%3D%2214%22%2F%3E%3Crect%20x%3D%22110%22%20y%3D%22138%22%20width%3D%226%22%20height%3D%2214%22%2F%3E%3Crect%20x%3D%22146%22%20y%3D%2296%22%20width%3D%2248%22%20height%3D%2234%22%20rx%3D%227%22%2F%3E%3Crect%20x%3D%22142%22%20y%3D%22128%22%20width%3D%2256%22%20height%3D%2210%22%20rx%3D%224%22%2F%3E%3Crect%20x%3D%22148%22%20y%3D%22138%22%20width%3D%226%22%20height%3D%2214%22%2F%3E%3Crect%20x%3D%22186%22%20y%3D%22138%22%20width%3D%226%22%20height%3D%2214%22%2F%3E%3Crect%20x%3D%22222%22%20y%3D%2296%22%20width%3D%2248%22%20height%3D%2234%22%20rx%3D%227%22%2F%3E%3Crect%20x%3D%22218%22%20y%3D%22128%22%20width%3D%2256%22%20height%3D%2210%22%20rx%3D%224%22%2F%3E%3Crect%20x%3D%22224%22%20y%3D%22138%22%20width%3D%226%22%20height%3D%2214%22%2F%3E%3Crect%20x%3D%22262%22%20y%3D%22138%22%20width%3D%226%22%20height%3D%2214%22%2F%3E%3C%2Fg%3E%3Crect%20x%3D%22470%22%20y%3D%22126%22%20width%3D%2230%22%20height%3D%2226%22%20rx%3D%224%22%20fill%3D%22%23a9836b%22%2F%3E%3Cpath%20d%3D%22M485%20126c0-16-9-24-18-27%203%2012%208%2020%2018%2027zM485%20126c0-16%209-24%2018-27-3%2012-8%2020-18%2027z%22%20fill%3D%22%2379a87c%22%2F%3E%3Crect%20x%3D%22556%22%20y%3D%22104%22%20width%3D%22188%22%20height%3D%2248%22%20fill%3D%22%230d6e6e%22%20opacity%3D%22.78%22%2F%3E%3Crect%20x%3D%22546%22%20y%3D%2294%22%20width%3D%22208%22%20height%3D%2212%22%20rx%3D%224%22%20fill%3D%22%230a5757%22%2F%3E%3Crect%20x%3D%22596%22%20y%3D%22118%22%20width%3D%22108%22%20height%3D%227%22%20rx%3D%223%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.55%22%2F%3E%3Crect%20x%3D%22596%22%20y%3D%22132%22%20width%3D%2272%22%20height%3D%227%22%20rx%3D%223%22%20fill%3D%22%23ffffff%22%20opacity%3D%22.35%22%2F%3E%3C%2Fsvg%3E">
@@ -160,7 +167,7 @@
          el campo no tiene nombre: anuncia "edición" y nada más. -->
     <div class="campo">
       <label>DNI</label>
-      <input id="dni" name="dni" type="text" inputmode="numeric" required="" pattern="[0-9]{7,8}" style="border-color: #7D98AF" aria-label="Dni">
+      <input id="dni" name="dni" type="text" inputmode="numeric" required="" pattern="[0-9]{7,8}" style="outline:2px solid #2E75B6;outline-offset:2px;" aria-label="Dni">
       <p class="ayuda">Sin puntos ni espacios.</p>
     </div>
 
