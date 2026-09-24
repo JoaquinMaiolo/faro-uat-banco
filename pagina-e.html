@@ -107,6 +107,18 @@
   /* --- F-8, bloque 2: mensaje de error --- */
   .error{display:none; background:#fdeaea; border:1px solid #f0b4b4; color:#8a1f1f;
          border-radius:8px; padding:11px 14px; margin:0 0 18px; font-size:14px}
+  /* Agregados el 23/09/2026: buscador, estudios, contacto e imagen de la entrada */
+  .buscador{display:flex; gap:8px; margin-bottom:24px}
+  .buscador input{font:inherit; font-size:14px; padding:6px 10px; border:1px solid #7D98AF; border-radius:8px; flex:1; min-width:0}
+  .buscador button{display:flex; align-items:center; justify-content:center; width:44px; height:44px; border:0; border-radius:8px; background:var(--primario); color:#fff; cursor:pointer}
+  .buscador svg{width:20px; height:20px; fill:currentColor}
+  .estudios{background:#fff; border:1px solid var(--linea); border-radius:12px; padding:18px 24px; margin-top:26px}
+  .estudios p{margin:0}
+  .fila{display:flex; justify-content:space-between; gap:16px; padding:10px 0; border-top:1px solid var(--linea)}
+  .contacto{display:flex; align-items:center; gap:14px; margin-top:26px}
+  .contacto a{display:flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:50%; background:var(--primario); color:#fff}
+  .contacto svg{width:24px; height:24px; fill:currentColor}
+  .foto-entrada{width:100%; height:auto; border-radius:10px; display:block; margin-top:10px}
 </style>
 </head>
 <body>
@@ -126,6 +138,14 @@
 </header>
 
 <main>
+  <!-- ⚠️ button-name (agregado el 23/09): buscador visible en todos los tamanos,
+       con un boton que es solo una lupa. Sin nombre accesible. -->
+  <form class="buscador" role="search" action="/buscar">
+    <input type="search" name="q" placeholder="Buscar en el sitio">
+    <button type="submit">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 2a8 8 0 0 1 6.32 12.9l5.39 5.4-1.41 1.4-5.4-5.39A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+    </button>
+  </form>
   <h1>Solicitar turno</h1>
   <p class="bajada">Completá tus datos y elegí la especialidad. Te confirmamos por correo. Si preferís, podés <a class="enlace-color" href="/turnos/telefono">pedirlo por teléfono</a>.</p>
 
@@ -211,6 +231,37 @@
 
   </form>
 
+  <!-- ⚠️ 2.4.4 proposito del enlace (agregado el 23/09, recorte de F-8): tres
+       enlaces que dicen solo "Descargar" y van a destinos distintos. Es el
+       patron que P1 describio sobre Google Academico y SciELO: no sabe que se
+       descarga. Mirando la pantalla el texto de la izquierda da el contexto;
+       recorriendo por enlaces, los tres suenan igual. -->
+  <section class="estudios">
+    <p><strong>Tus estudios</strong></p>
+    <div class="fila"><p>Resultados de laboratorio</p><a href="/estudios/resultado-7731.pdf">Descargar</a></div>
+    <div class="fila"><p>Orden de derivación a cardiología</p><a href="/estudios/orden-2204.pdf">Descargar</a></div>
+    <div class="fila"><p>Instructivo de preparación para el ayuno</p><a href="/documentos/doc-118.pdf">Descargar</a></div>
+  </section>
+
+  <!-- ⚠️ link-name (agregado el 23/09): contacto solo con iconos, sin texto.
+       Patron tipico de sitios de consultorios. -->
+  <div class="contacto">
+    <p>Escribinos o mirá cómo llegar:</p>
+    <a href="https://wa.me/5491100000000">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3z"/></svg>
+    </a>
+    <a href="https://maps.app.goo.gl/x7Kq2">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+    </a>
+  </div>
+
+  <!-- T-P1-3 (1.1.1), agregada el 23/09/2026: imagen informativa SIN alt, servida
+       por https desde este mismo sitio (PNG, no data: URI) para que la rama de
+       vision del motor la pueda ver. Lo que muestra no esta dicho en ningun texto
+       de la pagina: un alt correcto solo puede salir de mirarla. -->
+  <p>Así vas a encontrar la entrada:</p>
+  <img class="foto-entrada" src="https://joaquinmaiolo.github.io/faro-uat-banco/entrada.png" width="800" height="300">
+
 </main>
 
 <footer>
@@ -229,6 +280,12 @@
   var error = document.getElementById('error-form');
   var nota = document.querySelector('.acciones .nota');
   form.setAttribute('novalidate', '');
+  // Ningun enlace ni el buscador sacan de la pagina: en la sesion se pregunta a
+  // donde llevan, no se navega. Igual en las dos versiones.
+  document.querySelector('form.buscador').addEventListener('submit', function (e) { e.preventDefault(); });
+  document.querySelectorAll('a[href]').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); });
+  });
   form.addEventListener('submit', function (event) {
     event.preventDefault();
     var problemas = [];
