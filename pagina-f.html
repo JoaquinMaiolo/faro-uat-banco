@@ -215,4 +215,44 @@
 
 
 
+<!-- Validacion del formulario (agregada el 23/09/2026). Es IDENTICA en pagina-e y
+     pagina-f: no es parte de la remediacion. Existe para que el contenedor
+     #error-form se llene de verdad al enviar con datos invalidos; la unica
+     diferencia entre las dos paginas sigue siendo la de FARO (role="alert").
+     No mueve el foco: si lo moviera, el lector anunciaria el error en las dos
+     versiones y se perderia justo lo que se quiere medir (4.1.3). -->
+<script>
+(function () {
+  var form = document.querySelector('form.tarjeta');
+  var error = document.getElementById('error-form');
+  var nota = document.querySelector('.acciones .nota');
+  form.setAttribute('novalidate', '');
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var problemas = [];
+    if (!document.getElementById('nombre').value.trim()) {
+      problemas.push('falta el nombre y apellido');
+    }
+    if (!/^[0-9]{7,8}$/.test(document.getElementById('dni').value.trim())) {
+      problemas.push('el DNI tiene que tener 7 u 8 números, sin puntos ni espacios');
+    }
+    if (!document.getElementById('especialidad').value) {
+      problemas.push('falta elegir la especialidad');
+    }
+    // Se vacia primero y se llena en el siguiente ciclo para que un segundo
+    // envio fallido se vuelva a anunciar.
+    error.textContent = '';
+    if (problemas.length) {
+      error.style.display = 'block';
+      setTimeout(function () {
+        error.textContent = 'No pudimos enviar el turno: ' + problemas.join('; ') + '.';
+      }, 50);
+    } else {
+      error.style.display = 'none';
+      nota.textContent = 'Solicitud registrada. Esta es una página de prueba: el turno no se envía.';
+    }
+  });
+})();
+</script>
+
 </body></html>
