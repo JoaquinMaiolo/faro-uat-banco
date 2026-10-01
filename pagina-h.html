@@ -131,6 +131,11 @@
   .sede-titulo{font-size:26px; color:#b4c0c8; margin:0 0 10px}
   /* ⚠️ 1.4.3: telefono y direccion en el mismo gris que el aviso (2,07:1). */
   .sede-dato{color:#a9b6c0; font-size:15px; margin:0 0 6px}
+  /* ⚠️ 1.4.11: casilla con borde casi invisible sobre blanco. */
+  .recordatorio{display:flex; align-items:center; gap:10px; font-size:15px; font-weight:400; margin:0}
+  .recordatorio input{appearance:none; -webkit-appearance:none; flex:none; width:22px; height:22px; margin:0; padding:0;
+                      border:2px solid #d3dde4; border-radius:4px; background:#fff; cursor:pointer}
+  .recordatorio input:checked{background:var(--primario); border-color:var(--primario)}
 </style>
 <meta name="faro-remediado" content="snapshot remediado por FARO: un parche por violacion, sobre nodes[0]"><meta name="faro-remediado" content="snapshot remediado por FARO: un parche por violacion, sobre nodes[0]"></head>
 <body>
@@ -234,6 +239,12 @@
         <option value="prepaga">Prepaga</option>
         <option value="sindical">Sindical</option>
       </select>
+    </div>
+
+    <!-- ⚠️ v1.4 · 1.4.11: la casilla existe, pero su borde (#d3dde4 sobre blanco)
+         casi no se ve. Para T-P3-3: ¿la encuentra sin tantear? -->
+    <div class="campo">
+      <label class="recordatorio"><input type="checkbox" name="recordatorio_sms" style="border-color: #7A98AD"> Quiero un recordatorio por SMS</label>
     </div>
 
     <div class="acciones">
