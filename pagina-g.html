@@ -138,6 +138,17 @@
   .recordatorio input{appearance:none; -webkit-appearance:none; flex:none; width:22px; height:22px; margin:0; padding:0;
                       border:2px solid #d3dde4; border-radius:4px; background:#fff; cursor:pointer}
   .recordatorio input:checked{background:var(--primario); border-color:var(--primario)}
+
+  /* --- v1.5 (01/10/2026): casos de P3 para T-P3-4 --- */
+  /* ⚠️ 2.4.7 foco visible: el menu y el buscador pierden el outline, que es justo
+     el recorrido de T-P3-4 (Tab hasta el buscador / hasta el menu). */
+  #menu-turnos:focus{outline:none}
+  #menu-especialidades:focus{outline:none}
+  #menu-contacto:focus{outline:none}
+  #buscar:focus{outline:none}
+  /* ⚠️ 2.4.11 foco no oscurecido: header pegado arriba al hacer scroll. Con letra
+     grande crece, y tapa mas. */
+  header.barra{position:sticky; top:0; z-index:10}
 </style>
 </head>
 <body>
@@ -150,9 +161,9 @@
   </a>
 
   <nav>
-    <a href="/turnos">Turnos</a>
-    <a href="/especialidades">Especialidades</a>
-    <a href="/contacto">Contacto</a>
+    <a id="menu-turnos" href="/turnos">Turnos</a>
+    <a id="menu-especialidades" href="/especialidades">Especialidades</a>
+    <a id="menu-contacto" href="/contacto">Contacto</a>
   </nav>
 </header>
 
@@ -164,7 +175,7 @@
        acertarle con el dedo. Funciona igual en las dos versiones. -->
   <div class="tamano"><span>Tamaño de letra</span><button type="button" id="letra-menos">A−</button><button type="button" id="letra-mas">A+</button></div>
   <form class="buscador" role="search" action="/buscar">
-    <input type="search" name="q" placeholder="Buscar en el sitio">
+    <input id="buscar" type="search" name="q" placeholder="Buscar en el sitio">
     <button type="submit">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 2a8 8 0 0 1 6.32 12.9l5.39 5.4-1.41 1.4-5.4-5.39A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
     </button>

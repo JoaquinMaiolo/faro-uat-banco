@@ -136,6 +136,16 @@
   .recordatorio input{appearance:none; -webkit-appearance:none; flex:none; width:22px; height:22px; margin:0; padding:0;
                       border:2px solid #d3dde4; border-radius:4px; background:#fff; cursor:pointer}
   .recordatorio input:checked{background:var(--primario); border-color:var(--primario)}
+
+  /* --- v1.5 (01/10/2026): casos de P3 para T-P3-4 --- */
+  /* 2.4.7: las cuatro reglas como las deja el PR de FARO (mapear_foco.py). */
+  #menu-turnos:focus{outline:2px solid #2E75B6; /* FARO — WCAG 2.4.7 */ outline-offset: 2px;}
+  #menu-especialidades:focus{outline:2px solid #2E75B6; /* FARO — WCAG 2.4.7 */ outline-offset: 2px;}
+  #menu-contacto:focus{outline:2px solid #2E75B6; /* FARO — WCAG 2.4.7 */ outline-offset: 2px;}
+  #buscar:focus{outline:2px solid #2E75B6; /* FARO — WCAG 2.4.7 */ outline-offset: 2px;}
+  /* 2.4.11: el header sigue pegado (FARO no lo toca); el parche es el
+     scroll-margin-top de #especialidad. */
+  header.barra{position:sticky; top:0; z-index:10}
 </style>
 <meta name="faro-remediado" content="snapshot remediado por FARO: un parche por violacion, sobre nodes[0]"><meta name="faro-remediado" content="snapshot remediado por FARO: un parche por violacion, sobre nodes[0]"></head>
 <body>
@@ -148,9 +158,9 @@
   </a>
 
   <nav>
-    <a href="/turnos">Turnos</a>
-    <a href="/especialidades">Especialidades</a>
-    <a href="/contacto">Contacto</a>
+    <a id="menu-turnos" href="/turnos">Turnos</a>
+    <a id="menu-especialidades" href="/especialidades">Especialidades</a>
+    <a id="menu-contacto" href="/contacto">Contacto</a>
   </nav>
 </header>
 
@@ -162,7 +172,7 @@
        acertarle con el dedo. Funciona igual en las dos versiones. -->
   <div class="tamano"><span>Tamaño de letra</span><button type="button" id="letra-menos" style="min-width:24px;min-height:24px;">A−</button><button type="button" id="letra-mas" style="min-width:24px;min-height:24px;">A+</button></div>
   <form class="buscador" role="search" action="/buscar">
-    <input type="search" name="q" placeholder="Buscar en el sitio">
+    <input id="buscar" type="search" name="q" placeholder="Buscar en el sitio">
     <button type="submit" aria-label="Buscar">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 2a8 8 0 0 1 6.32 12.9l5.39 5.4-1.41 1.4-5.4-5.39A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"></path></svg>
     </button>
@@ -221,7 +231,7 @@
          está asociada al select. -->
     <div class="campo">
       <label>Especialidad</label>
-      <select id="especialidad" name="especialidad" style="border-color: #7D98AF" for="especialidad" aria-label="Seleccionar especialidad">
+      <select id="especialidad" name="especialidad" style="scroll-margin-top:67px;border-color: #7D98AF" for="especialidad" aria-label="Seleccionar especialidad">
         <option value="">Elegí una opción</option>
         <option value="clinica">Clínica médica</option>
         <option value="cardio">Cardiología</option>
