@@ -262,6 +262,10 @@
       <label class="recordatorio"><input type="checkbox" name="recordatorio_sms"> Quiero un recordatorio por SMS</label>
     </div>
 
+    <!-- ⚠️ v1.7 · 1.3.5: celular con el autocompletado apagado a proposito. Solo para
+         observar (no entra al A/B): lo que ofreceria el navegador es el dato REAL del tester. -->
+    <div class="campo"><label for="celular">Celular para el recordatorio (opcional)</label><input id="celular" name="celular" type="tel" autocomplete="off"></div>
+
     <div class="acciones">
       <!-- ⚠️ button-name: el botón no tiene texto, sólo un ícono SVG decorativo. -->
       <button class="enviar" type="submit">

@@ -147,6 +147,12 @@
      scroll-margin-top de #especialidad. */
   header.barra{position:sticky; top:0; z-index:10}
 
+  /* ⚠️ v1.7 · 1.3.1 (H44): casilla de 16 px con la etiqueta al lado pero SIN for.
+     Con un puntero hay que acertarle al cuadrado: el texto no es clickeable. */
+  .primera{display:flex; align-items:center; gap:8px}
+  .primera input{width:16px; height:16px; margin:0; flex:none}
+  .primera label{display:inline; font-weight:400; font-size:15px; margin:0}
+
   /* --- v1.6 (02/10/2026): casos de P2, motriz --- */
   /* ⚠️ 2.5.8 tamano del objetivo: dias de 18x18 px separados por 2 px. Con un
      puntero movido por teclas o joystick cuesta acertarle al dia correcto. */
@@ -239,8 +245,8 @@
     <!-- ⚠️ select-name: mismo caso que el DNI. La etiqueta se ve, pero no
          está asociada al select. -->
     <div class="campo">
-      <label>Especialidad</label>
-      <select id="especialidad" name="especialidad" style="scroll-margin-top:67px;border-color: #7D98AF" for="especialidad" aria-label="Seleccionar especialidad">
+      <label for="especialidad">Especialidad</label>
+      <select id="especialidad" name="especialidad" style="scroll-margin-top:67px;border-color: #7D98AF" aria-label="Seleccionar especialidad">
         <option value="">Elegí una opción</option>
         <option value="clinica">Clínica médica</option>
         <option value="cardio">Cardiología</option>
@@ -260,6 +266,9 @@
       </select>
     </div>
 
+    <!-- ⚠️ v1.7 · 1.3.1: la etiqueta se ve pegada a la casilla pero no esta asociada. -->
+    <div class="campo primera"><input type="checkbox" id="primera" name="primera_consulta" aria-label="Primera consulta"><label for="primera">Es mi primera consulta</label></div>
+
     <!-- ⚠️ v1.6 · 2.5.8: dias del turno en botones de 18 px pegados entre si.
          Funciona igual en las dos versiones. -->
     <div class="campo">
@@ -272,6 +281,10 @@
     <div class="campo">
       <label class="recordatorio"><input type="checkbox" name="recordatorio_sms" style="border-color: #7A98AD"> Quiero un recordatorio por SMS</label>
     </div>
+
+    <!-- ⚠️ v1.7 · 1.3.5: celular con el autocompletado apagado a proposito. Solo para
+         observar (no entra al A/B): lo que ofreceria el navegador es el dato REAL del tester. -->
+    <div class="campo"><label for="celular">Celular para el recordatorio (opcional)</label><input id="celular" name="celular" type="tel" autocomplete="tel" style="border-color: #7D98AF;scroll-margin-top:67px;"></div>
 
     <div class="acciones">
       <!-- ⚠️ button-name: el botón no tiene texto, sólo un ícono SVG decorativo. -->
