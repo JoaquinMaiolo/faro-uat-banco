@@ -89,7 +89,7 @@
   .nota{font-size:13px; color:var(--tinta-suave); margin:0}
 
   /* ⚠️ 2.4.7 foco visible: este campo se saltea el outline general. */
-  #dni:focus{outline:none}
+  #dni:focus{outline:2px solid #2E75B6; /* FARO — WCAG 2.4.7 */ outline-offset: 2px;}
   /* ⚠️ 1.4.1 uso del color: enlace distinguido SOLO por color, sin subrayado. */
   .enlace-color{color:var(--primario); text-decoration:none}
 
@@ -223,7 +223,7 @@
          el campo no tiene nombre: anuncia "edición" y nada más. -->
     <div class="campo">
       <label>DNI</label>
-      <input id="dni" name="dni" type="text" inputmode="numeric" required="" pattern="[0-9]{7,8}" style="outline:2px solid #2E75B6;outline-offset:2px;" aria-label="Dni">
+      <input id="dni" name="dni" type="text" inputmode="numeric" required="" pattern="[0-9]{7,8}" aria-label="Dni">
       <p class="ayuda">Sin puntos ni espacios.</p>
     </div>
 
